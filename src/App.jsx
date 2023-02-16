@@ -20,14 +20,12 @@ function App() {
               <div className="year-list">
                 <div className="indie-items w-[60%] bg-slate-100 py-[5px] px-[5px] border-2 border-slate-100 rounded-lg overflow-auto">A</div>
               </div>
-              <div className="form-area">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  {/* Select Year Field */}
-                  <div>
-                    <label for="year-select">Choose Year</label>
+              <div className="form-area bg-slate-100 border-2 border-slate-100 rounded-lg p-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-row">
+                  <div className="flex-1">
+                    <label htmlFor="year-select" className="block text-emerald-500 underline underline-offset-1 font-semibold">Choose Year</label>
 
                     <select name="pets" id="year-select" {...register("year", { required: true })}>
-                      <option value="">--Please choose a year--</option>
                       <option value="1998">1998</option>
                       <option value="2008">2008</option>
                       <option value="2018">2018</option>
@@ -36,11 +34,11 @@ function App() {
                       <option value="2048">2048</option>
                     </select>
                   </div>
-                  <div>
-                    <p>Revenue</p>
-                    <input type="number" {...register("revenue", { required: true })}/>
+                  <div className="flex-1">
+                    <p className="text-emerald-500 underline underline-offset-1 font-semibold">Revenue</p>
+                    <input type="number" {...register("revenue", { required: true })} placeholder="Enter Amount" />
                   </div>
-                  <button type="submit">Add</button>
+                  <div className="flex-1"><button type="submit" className="bg-emerald-500 text-white px-[20px] py-[3px] border-2 border-emerald-500 rounded-md block mx-auto mt-[8px]">ADD</button></div>
                 </form>
               </div>
             </div>
