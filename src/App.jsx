@@ -1,10 +1,31 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { db } from "./db";
+import { useLiveQuery } from 'dexie-react-hooks';
 
 
 function App() {
+  const [revenue, setRevenue] = useState("Enter Amount");
+
+  const theList = useLiveQuery(
+    () => db.friends.toArray()
+  );
+  console.log(theList);
+
+
+
   //react-form
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = async (data) => {
+    const year = data.year;
+    const rev = data.revenue;
+    const id = await db.friends.add({ year, rev });
+  }
+
+
+
+
+
   return (
     <div className="App">
       <div className="sidebar h-[99vh] bg-emerald-500 border-8 border-emerald-500 rounded-3xl"></div>
@@ -36,7 +57,7 @@ function App() {
                   </div>
                   <div className="flex-1">
                     <p className="text-emerald-500 underline underline-offset-1 font-semibold">Revenue</p>
-                    <input type="number" {...register("revenue", { required: true })} placeholder="Enter Amount" />
+                    <input type="number" {...register("revenue", { required: true })} placeholder={revenue} />
                   </div>
                   <div className="flex-1"><button type="submit" className="bg-emerald-500 text-white px-[20px] py-[3px] border-2 border-emerald-500 rounded-md block mx-auto mt-[8px]">ADD</button></div>
                 </form>
