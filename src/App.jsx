@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 
 
 function App() {
+  //react-form
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
   return (
     <div className="App">
       <div className="sidebar h-[99vh] bg-emerald-500 border-8 border-emerald-500 rounded-3xl"></div>
@@ -17,7 +20,29 @@ function App() {
               <div className="year-list">
                 <div className="indie-items w-[60%] bg-slate-100 py-[5px] px-[5px] border-2 border-slate-100 rounded-lg overflow-auto">A</div>
               </div>
-              <div className="form-area"></div>
+              <div className="form-area">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  {/* Select Year Field */}
+                  <div>
+                    <label for="year-select">Choose Year</label>
+
+                    <select name="pets" id="year-select" {...register("year", { required: true })}>
+                      <option value="">--Please choose a year--</option>
+                      <option value="1998">1998</option>
+                      <option value="2008">2008</option>
+                      <option value="2018">2018</option>
+                      <option value="2028">2028</option>
+                      <option value="2038">2038</option>
+                      <option value="2048">2048</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p>Revenue</p>
+                    <input type="number" {...register("revenue", { required: true })}/>
+                  </div>
+                  <button type="submit">Add</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
