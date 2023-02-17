@@ -23,4 +23,8 @@
         padding-bottom: 10px;
         overflow: auto;
     }
+    .profile-icon {
+        background-image: url(../src/assets/omar-elsharawy-0urE8CCi-To-unsplash.jpg);
+        background-size: contain;
+    }
 }
